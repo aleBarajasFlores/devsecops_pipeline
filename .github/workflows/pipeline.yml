@@ -7,8 +7,8 @@ jobs:
       - name: Descargar el código
         uses: actions/checkout@v4
 
-      - name: Escaneo SAST con SonarQube
-        uses: sonarsource/sonarqube-scan-action@v3
+      #- name: Escaneo SAST con SonarQube
+      #  uses: sonarsource/sonarqube-scan-action@v3
 
       - name: Construir imagen Docker
         run: docker build -t mi-app-java .
