@@ -7,8 +7,15 @@ jobs:
       - name: Descargar el código
         uses: actions/checkout@v4
 
-      #- name: Escaneo SAST con SonarQube
-      #  uses: sonarsource/sonarqube-scan-action@v3
+      - name: Escaneo SAST con SonarQube
+        uses: sonarsource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: "https://sonarcloud.io" 
+        with:
+          args: >
+            -Dsonar.organization=Barajas Flores Alejandra
+            -Dsonar.projectKey=alebarajasflores
 
       - name: Construir imagen Docker
         run: docker build -t mi-app-java .
