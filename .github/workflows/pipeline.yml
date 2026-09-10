@@ -14,8 +14,8 @@ jobs:
           SONAR_HOST_URL: "https://sonarcloud.io" 
         with:
           args: >
-            -Dsonar.organization=Barajas Flores Alejandra
-            -Dsonar.projectKey=alebarajasflores
+            -Dsonar.organization=alebarajasflores
+            -Dsonar.projectKey=aleBarajasFlores_devsecops_pipeline
 
       - name: Construir imagen Docker
         run: docker build -t mi-app-java .
