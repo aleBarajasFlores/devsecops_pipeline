@@ -18,7 +18,9 @@ jobs:
             -Dsonar.projectKey=aleBarajasFlores_devsecops_pipeline
 
       - name: Construir imagen Docker
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/mi-app-java:latest .
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker build -t $DOCKER_USERNAME/mi-app-java:latest .
 
       - name: Escanear imagen con Trivy 
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
@@ -32,4 +34,6 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Publicar imagen segura
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/mi-app-java:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker push $DOCKER_USERNAME/mi-app-java:latest
